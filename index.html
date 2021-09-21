@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- ===== include the styles from CSS file ===== -->
+        <link rel="stylesheet" href="css/styles.css">
+        <!-- ===== link to font-awsom icons cloud ===== -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <title>Marie-Landing-Page </title>
+    </head>
+
+    <body class="bodyStyle" >
+        <div id="mainDiv" onclick="BodyClicked()">
+            <ul class="headerStyle">
+                <div id="headerItems" onclick="ChangeActiveState(event)">
+                    <li><a class="active">Home</a></li>
+                    <li><a >About Us</a></li>
+                    <li><a>Comments</a></li>
+                    <li><a>Write us</a></li>
+                    <li><a>Rating system</a></li>
+                </div>
+            </ul> 
+
+            <!-- Slideshow container -->
+            <div id="imageSlidder" class="slideshow-container">
+                <!-- First slide - a welcome word -->
+                <div class="mySlides fade">
+                    <div class="centered">
+                        <h1>
+                            Welcome to our landing page.
+                        </h1>
+                        <h3>
+                            This project is submitted to Udacity.  
+                        </h3>
+                    </div>
+                </div>
+                <!-- default images only 2 images -->
+                <div class="mySlides fade">
+                    <img src="img/imgTest1.jpg" class="SliderImg">
+                </div>
+            
+                <div class="mySlides fade">
+                    <img src="img/imgTest2.jpg" class="SliderImg">
+                </div>
+
+                <!-- Next and previous buttons -->
+                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                <a class="next" onclick="plusSlides(1)">&#10095;</a>
+            </div>
+
+            <!--About us container -->
+            <div id="aboutUsSection">
+                <div class="aboutUsContainer">
+                    <div class="leftTopPart">
+                        <h1>
+                            Who are we?
+                        </h1>
+                        <!-- texts are used from https://www.volusion.com/blog/how-to-build-an-about-us-page-with-examples/ -->
+                        <p>
+                            Founded in 1800 by a person,
+                             Our store has come a long way from its beginnings. 
+                         When a person
+                              first started out, his/her passion for
+                              web developping drove him to 
+                              do intense research,
+                                and gave him the impetus to turn hard work 
+                                and inspiration into to a booming online company. 
+                                We now serve customers all over 
+                                Egypt. We have more than 1000 customers and 5000 employees.
+
+                        </p>
+                    </div>
+                    <div class="rightTopPart">
+                        <img src="img/About-Us.jpg" class="aboutUsImg">
+                    </div>
+                </div>
+                <div class="aboutUsContainer">
+                    <div class="rightTopPart">
+                        <h1>
+                           Our vision 
+                        </h1>
+                        <p>
+                            We aim to be a part of the market leader 
+                            of the web developing industry.
+                             We hope you enjoy our products as much as we 
+                             enjoy offering them to you. 
+                        </p>
+                    </div>
+                    <div class="leftTopPart">
+                        <img src="img/vision.jpeg" class="aboutUsImg">
+                    </div>
+                </div>
+            </div>
+
+            <!--Comments container -->
+            <div id="commentsSection" >
+                <h1>
+                    Users Comments and Feedback
+                </h1>
+            </div>
+
+            <!--Contact us container -->
+            <div id="contactUsSection" class="contactUscontainer">
+
+                <h1>
+                    Write us a comment
+                </h1>
+                <label for="fname">First Name</label>
+                <input type="text" id="fname" name="firstname" placeholder="Your name..">
+            
+                <label for="lname">Last Name</label>
+                <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+            
+                <label for="subject">Subject</label>
+                <textarea id="subject" name="subject" placeholder="Write something.."></textarea>
+                <button onclick="AddUserComment()"> Send</button>
+            </div>
+
+            <!--Rating System -->
+            <div id="ratingSystemSection">
+                <ul>
+                    <div  onclick="RatingClicked(event)">
+                        <li> <a id=5 class="fa fa-star fa-3x ratingStar"></a> </li>
+                        <li> <a id=4 class="fa fa-star fa-3x ratingStar"></a> </li>
+                        <li> <a id=3 class="fa fa-star fa-3x ratingStar"></a> </li>
+                        <li> <a id=2 class="fa fa-star fa-3x ratingStar"></a> </li>
+                        <li> <a id=1 class="fa fa-star fa-3x ratingStar"></a> </li>
+                    </div>
+                </ul> 
+
+                <div id="ratingResults" class="row">
+                </div>  
+                <div class="averageRatingDiv">
+                    <p id="ratingAvr" style="padding-top: 30%; font-size: 48pt; font-weight: bolder;">
+                        2.5
+                    </p>
+                </div>
+                <p style="font-size: 48pt; font-weight: bolder; color: black; float: left; margin-left: 25%;">
+                    Average rating!
+                </p>
+            </div>
+            <!--User-added container -->
+            <div id="userAddedSections">
+
+            </div>
+
+        </div>
+        <!--Footer -->
+        <footer>
+            <p>&#169 Marie Louise</p>
+        </footer>
+    </body>
+
+
+    <!--=====Add a new item button =====-->
+    <a onclick="ShowAddItemMenu()" class="floatingButton">
+        <i class="fa fa-plus floatingButtonIcon"></i>
+    </a>
+    <!--=====Popup menu to add a new item =====-->
+    <div id="addItemPopUp" class="addItemPopUpStyle fade">
+        <!--=====Combo box of items to add  =====-->
+        <label for="addItems">Choose an item to add:</label>
+        <br>
+        <select name="addItems" id="ItemsComboBox" onchange="SelectedAddItemChanged()">
+            <option value="img">An image</option>
+            <option value="nav-item">A nav item</option>
+        </select>
+        <!--===== First input Box =====-->
+        <label id="itemDetailFirst" for="it1">Image name:</label>
+        <input type="text" id="itemDetailFirstInput" name="it1" placeholder="ex: myImage"><br><br>
+        <!--===== Second input Box =====-->
+        <label id="itemDetailSecond" for="it2">Image link:</label>
+        <input type="text" id="itemDetailSecondInput" name="it2" placeholder="ex: https://www.website.com"><br><br>
+                
+        <button onclick="HideAddItemMenu()"> Cancel </button>
+        <button onclick="AddItem()"> OK </button>
+    </div>
+
+    <!--=====include the function from JS file =====-->
+    <script src="js/app.js"></script>
+</html>
