@@ -26,6 +26,17 @@ var commentsArray = [
 // [5star, 4star, 3star, 2star, 1star]
 var ratingResArr = [100, 63, 30, 12, 2];
 
+// numbe of the sections that should be added to the nav-menu 
+//let numOfLandingSections = document.getElementsByClassName("landingSection").length;
+let numOfLandingSections = 0;
+
+// array of html components contains the titles-input of the user-defined sections
+let titels = {};
+// array of html components contains the text-areas of the user-defined sections
+let texts =  {};
+
+// array of strings contains the titles of the ready sections 
+let readyComponents = [ ];
 // ============================================================================
 
 
@@ -33,42 +44,160 @@ var ratingResArr = [100, 63, 30, 12, 2];
 // ================= Functions for APIs ==========================
 //==============================================================
 
+// to randomize the titles and text of the sections -(mainly to test)
+function RandomizeSectionDetails(){
+    titels = document.getElementsByClassName("secTitle");
+    texts = document.getElementsByClassName("secText");
+    for(var i = 0; i < titels.length; i++)
+    {
+        titels[i].value = "Section"+ (i+1);
+
+        texts[i].value =  "Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n"
+                        + "Morbi fermentum metus faucibus lectus pharetra dapibus. Suspendisse potenti.\n"
+                        + "Aenean aliquam elementum mi, ac euismod augue.\n" 
+                        + "Donec eget lacinia ex. Phasellus imperdiet porta orci eget mollis.\n"
+                        + "Sed convallis sollicitudin mauris ac tincidunt.\n"
+                        + "Donec bibendum, nulla eget bibendum consectetur, sem nisi aliquam leo, ut pulvinar quam nunc eu augue..\n"
+                        + "\n"
+                        + " Pellentesque maximus imperdiet elit a pharetra. Duis lectus mi, aliquam in mi quis, aliquam.\n"
+                        + " porttitor lacus. Morbi a tincidunt felis. Sed leo nunc, pharetra et elementum non, faucibus vitae elit. Integer nec libero venenatis libero ultricies molestie semper in tellus. Sed congue et odio sed euismod."
+                        + "  Aliquam a convallis justo. Vivamus venenatis, erat eget pulvinar gravida, ipsum lacus aliquet velit, vel luctus diam ipsum a diam. Cras eu tincidunt arcu, vitae rhoncus purus. Vestibulum fermentum consectetur porttitor." 
+                        + " Suspendisse imperdiet porttitor tortor, eget elementum tortor mollis non."
+    }
+    var button = document.getElementById("loadPageButton");
+    button.scrollIntoView({behavior: 'smooth'});
+}
+
+// to set the main page parameters based on the user inputs
+function SetPage(){
+    var counter = 0;
+    var numOfLandingSections = document.querySelector("#secNum").value;
+    if (numOfLandingSections > 10)
+    {
+        window.alert("Plese enter a number less than 10");
+        return;
+    }
+
+    var markedCheckbox = document.getElementsByClassName("checkBoxClass");
+
+    for (var checkbox of markedCheckbox) 
+    {
+        if (checkbox.checked) {
+            readyComponents.push(checkbox.value);
+            counter++;
+        } 
+    }
+
+    if (numOfLandingSections == 0 && counter == 0)
+    {
+        window.alert("You must have at least 1 component. Please enter a number or/and checked from our components. ");
+        return;
+    }
+
+    document.querySelector("#optionSetDiv").style.display = "none";
+    let detailsDiv = document.querySelector("#sectionsDetails");
+    
+    // looping over the chosen ready components
+    for (let i = 0; i < readyComponents.length; i++)
+    {
+        var itemID = "#"+readyComponents[i];
+        document.querySelector(itemID).style.display = "block";
+    }
+
+    // looping over the defined components
+    for (let i = 0; i < numOfLandingSections; i++)
+    {
+        var cDiv = document.createElement("div");
+        cDiv.className = "secDetail";
+        var newHeading = document.createElement("h3");
+        newHeading.innerHTML = "Section num " +(i+1)+ " title:";
+        cDiv.appendChild(newHeading); 
+        var newInput = document.createElement("input");
+        newInput.setAttribute("type", "text");
+        newInput.setAttribute("class", "secTitle");
+        newInput.setAttribute("placeholder", "Write something..");
+        cDiv.appendChild(newInput); 
+
+        var newHeading2 = document.createElement("h3");
+        newHeading2.innerHTML = "Section num " +(i+1)+ " text:";
+        cDiv.appendChild(newHeading2); 
+        var newTextArea = document.createElement("textarea");
+        newTextArea.setAttribute("class", "secText");
+        newTextArea.setAttribute("placeholder", "Write something..");
+        cDiv.appendChild(newTextArea); 
+        detailsDiv.appendChild(cDiv); 
+
+    }
+
+    var newSetButton = document.createElement("button");
+    newSetButton.setAttribute("onclick", "ShowMainPageWithUserSetup()");
+    newSetButton.setAttribute("id", "loadPageButton");
+    newSetButton.innerHTML = "Load Page"
+    detailsDiv.appendChild(newSetButton); 
+    detailsDiv.style.display = "block";
+}
+
+// to show the main landing page
+function ShowMainPageWithUserSetup()
+{
+    titels = document.getElementsByClassName("secTitle");
+    texts = document.getElementsByClassName("secText");
+
+    for(var i = 0; i < titels.length; i++)
+    {
+        if (titels[i].value == ""){
+            window.alert("You have to set titles for all sections.");
+            return;
+        }
+    }
+
+
+    document.querySelector("#sectionsDetails").style.display = "none";
+    var mainDiv = document.querySelector("#mainDiv");
+    mainDiv.scrollIntoView({behavior: 'smooth'});
+
+    // looping over the chosen ready components 
+    for(var i = 0; i < readyComponents.length; i++)
+    {
+        var newListItem= document.createElement("li");
+        newListItem.innerHTML = "<a>"+readyComponents[i] +"</a>";
+        document.querySelector("#headerItems").appendChild(newListItem);
+    }
+
+    // looping over the defined components 
+    for(var i = 0; i < titels.length; i++)
+    {
+        var newListItem= document.createElement("li");
+        newListItem.innerHTML = "<a>"+ titels[i].value+"</a>";
+        document.querySelector("#headerItems").appendChild(newListItem);
+        var newDiv= document.createElement("div");
+        newDiv.setAttribute("class","landingSectionUserDefined"); 
+        newDiv.setAttribute("id", titels[i].value);
+        var newHeading= document.createElement("h1");
+        newHeading.innerHTML = titels[i].value;
+        var newParagraph= document.createElement("p");
+        var newBreak= document.createElement("br");
+        var newBreak2= document.createElement("br");
+        var newLine= document.createElement("hr");
+        newParagraph.innerHTML = texts[i].value;
+        newDiv.appendChild(newHeading);
+        newDiv.appendChild(newParagraph);
+        newDiv.appendChild(newBreak);
+        newDiv.appendChild(newBreak2);
+        newDiv.appendChild(newLine);
+        document.querySelector("#userAddedSections").appendChild(newDiv); 
+    } 
+    mainDiv.style.display = "block";
+
+    document.getElementById("floatingBtn").style.display = "block";
+    document.getElementById("floatingBtnToTop").style.display = "block";
+}
+
 // function to change active class for nav item
 function ChangeActiveState(e) 
 {
-    var element = document.querySelectorAll(".active");
-    [].forEach.call(element, function(elm) {
-        elm.classList.remove("active");
-    });
-    e.target.className = "active";
-    
-    switch (e.target.innerHTML) {
-        case "Home":
-            var elmnt = document.getElementById("imageSlidder");
-            elmnt.scrollIntoView({behavior: 'smooth'});
-            break;
-        case "About Us":
-            var elmnt = document.getElementById("aboutUsSection");
-            elmnt.scrollIntoView({behavior: 'smooth'});
-        break;
-        case "Comments":
-            var elmnt = document.getElementById("commentsSection");
-            elmnt.scrollIntoView({behavior: 'smooth'});
-            commentsSection
-            break;
-        case "Write us":
-            var elmnt = document.getElementById("contactUsSection");
-            elmnt.scrollIntoView({behavior: 'smooth'});
-            break;
-        case "Rating system":
-                var elmnt = document.getElementById("ratingSystemSection");
-                elmnt.scrollIntoView({behavior: 'smooth'});
-            break;
-        default:
-            var elmnt = document.getElementById("userAddedSections");
-            elmnt.scrollIntoView({behavior: 'smooth'});
-            break;
-    }
+    var elmnt = document.getElementById(e.target.innerHTML);
+    elmnt.scrollIntoView({behavior: 'smooth'});
 }
 
 // To open the add item menu
@@ -323,3 +452,7 @@ function AddNavItem(title, text){;
     document.querySelector("#userAddedSections").appendChild(newDiv);  
 }
 
+// to scroll to the top
+function GoToTop(){
+    document.querySelector("#mainDiv").scrollIntoView({behavior:'smooth'});  
+}

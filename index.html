@@ -11,140 +11,179 @@
     </head>
 
     <body class="bodyStyle" >
+        <div id="optionSetDiv">
+            <h1>
+                Please choose your options before loading the page:
+            </h1>
+            <h3>
+                How many sections you want to customize?
+            </h3>
+            <label for="numOfSections">Enter a number between 1 and 10:</label>
+            <input type="number" id="secNum" name="numOfSections" min="1" max="10">
+            <h3>
+                You can also choose from our pre-designed sections
+            </h3>
+            <div>
+                <input type="checkbox" name="opt1" value="Home" class="checkBoxClass">
+                <label for="opt1"> Slide Show</label><br>
+                <input type="checkbox" name="opt2" value="About-us" class="checkBoxClass">
+                <label for="opt2"> About Us</label><br>
+                <input type="checkbox" name="opt3" value="Comments" class="checkBoxClass">
+                <label for="opt3"> Comments</label><br>
+                <input type="checkbox" name="opt4" value="Contact-us" class="checkBoxClass">
+                <label for="opt4">Write us</label><br>
+                <input type="checkbox" name="opt5" value="Rating" class="checkBoxClass">
+                <label for="opt5">Rating system</label><br>
+                <button onclick="SetPage()"> Set the page</button>
+            </div>
+        </div>
+        <div id="sectionsDetails">
+            <h1>
+                Sections details:
+            </h1>
+            <button onclick="RandomizeSectionDetails()"> Randomize</button>
+        </div>
+
+
+
         <div id="mainDiv" onclick="BodyClicked()">
             <ul class="headerStyle">
                 <div id="headerItems" onclick="ChangeActiveState(event)">
-                    <li><a class="active">Home</a></li>
-                    <li><a >About Us</a></li>
-                    <li><a>Comments</a></li>
-                    <li><a>Write us</a></li>
-                    <li><a>Rating system</a></li>
                 </div>
             </ul> 
 
             <!-- Slideshow container -->
-            <div id="imageSlidder" class="slideshow-container">
-                <!-- First slide - a welcome word -->
-                <div class="mySlides fade">
-                    <div class="centered">
-                        <h1>
-                            Welcome to our landing page.
-                        </h1>
-                        <h3>
-                            This project is submitted to Udacity.  
-                        </h3>
+            <section id="Home" class="landingSection">
+                <div id="imageSlidder" class="slideshow-container">
+                    <!-- First slide - a welcome word -->
+                    <div class="mySlides fade">
+                        <div class="centered">
+                            <h1>
+                                Welcome to our landing page.
+                            </h1>
+                            <h3>
+                                This project is submitted to Udacity.  
+                            </h3>
+                        </div>
                     </div>
-                </div>
-                <!-- default images only 2 images -->
-                <div class="mySlides fade">
-                    <img src="img/imgTest1.jpg" class="SliderImg">
-                </div>
-            
-                <div class="mySlides fade">
-                    <img src="img/imgTest2.jpg" class="SliderImg">
-                </div>
+                    <!-- default images only 2 images -->
+                    <div class="mySlides fade">
+                        <img src="img/imgTest1.jpg" class="SliderImg">
+                    </div>
+                
+                    <div class="mySlides fade">
+                        <img src="img/imgTest2.jpg" class="SliderImg">
+                    </div>
 
-                <!-- Next and previous buttons -->
-                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-                <a class="next" onclick="plusSlides(1)">&#10095;</a>
-            </div>
-
+                    <!-- Next and previous buttons -->
+                    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+                </div>
+            </section>  
             <!--About us container -->
-            <div id="aboutUsSection">
-                <div class="aboutUsContainer">
-                    <div class="leftTopPart">
-                        <h1>
-                            Who are we?
-                        </h1>
-                        <!-- texts are used from https://www.volusion.com/blog/how-to-build-an-about-us-page-with-examples/ -->
-                        <p>
-                            Founded in 1800 by a person,
-                             Our store has come a long way from its beginnings. 
-                         When a person
-                              first started out, his/her passion for
-                              web developping drove him to 
-                              do intense research,
-                                and gave him the impetus to turn hard work 
-                                and inspiration into to a booming online company. 
-                                We now serve customers all over 
-                                Egypt. We have more than 1000 customers and 5000 employees.
+            <section id="About-us" class="landingSection">
+                <div id="aboutUsSection">
+                    <div class="aboutUsContainer">
+                        <div class="leftTopPart">
+                            <h1>
+                                Who are we?
+                            </h1>
+                            <!-- texts are used from https://www.volusion.com/blog/how-to-build-an-about-us-page-with-examples/ -->
+                            <p>
+                                Founded in 1800 by a person,
+                                Our store has come a long way from its beginnings. 
+                            When a person
+                                first started out, his/her passion for
+                                web developping drove him to 
+                                do intense research,
+                                    and gave him the impetus to turn hard work 
+                                    and inspiration into to a booming online company. 
+                                    We now serve customers all over 
+                                    Egypt. We have more than 1000 customers and 5000 employees.
 
-                        </p>
+                            </p>
+                        </div>
+                        <div class="rightTopPart">
+                            <img src="img/About-Us.jpg" class="aboutUsImg">
+                        </div>
                     </div>
-                    <div class="rightTopPart">
-                        <img src="img/About-Us.jpg" class="aboutUsImg">
+                    <div class="aboutUsContainer">
+                        <div class="rightTopPart">
+                            <h1>
+                            Our vision 
+                            </h1>
+                            <p>
+                                We aim to be a part of the market leader 
+                                of the web developing industry.
+                                We hope you enjoy our products as much as we 
+                                enjoy offering them to you. 
+                            </p>
+                        </div>
+                        <div class="leftTopPart">
+                            <img src="img/vision.jpeg" class="aboutUsImg">
+                        </div>
                     </div>
                 </div>
-                <div class="aboutUsContainer">
-                    <div class="rightTopPart">
-                        <h1>
-                           Our vision 
-                        </h1>
-                        <p>
-                            We aim to be a part of the market leader 
-                            of the web developing industry.
-                             We hope you enjoy our products as much as we 
-                             enjoy offering them to you. 
-                        </p>
-                    </div>
-                    <div class="leftTopPart">
-                        <img src="img/vision.jpeg" class="aboutUsImg">
-                    </div>
+            </section>
+             <!--Comments container -->
+            <section id="Comments" class="landingSection">
+
+               
+                <div id="commentsSection" >
+                    <h1>
+                        Users Comments and Feedback
+                    </h1>
                 </div>
-            </div>
-
-            <!--Comments container -->
-            <div id="commentsSection" >
-                <h1>
-                    Users Comments and Feedback
-                </h1>
-            </div>
-
+            </section>
             <!--Contact us container -->
-            <div id="contactUsSection" class="contactUscontainer">
+            <section id="Contact-us" class="landingSection">
+                <div id="contactUsSection" class="contactUscontainer">
 
-                <h1>
-                    Write us a comment
-                </h1>
-                <label for="fname">First Name</label>
-                <input type="text" id="fname" name="firstname" placeholder="Your name..">
-            
-                <label for="lname">Last Name</label>
-                <input type="text" id="lname" name="lastname" placeholder="Your last name..">
-            
-                <label for="subject">Subject</label>
-                <textarea id="subject" name="subject" placeholder="Write something.."></textarea>
-                <button onclick="AddUserComment()"> Send</button>
-            </div>
+                    <h1>
+                        Write us a comment
+                    </h1>
+                    <label for="fname">First Name</label>
+                    <input type="text" id="fname" name="firstname" placeholder="Your name..">
+                
+                    <label for="lname">Last Name</label>
+                    <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+                
+                    <label for="subject">Subject</label>
+                    <textarea id="subject" name="subject" placeholder="Write something.."></textarea>
+                    <button onclick="AddUserComment()"> Send</button>
+                </div>
+            </section>
 
             <!--Rating System -->
-            <div id="ratingSystemSection">
-                <ul>
-                    <div  onclick="RatingClicked(event)">
-                        <li> <a id=5 class="fa fa-star fa-3x ratingStar"></a> </li>
-                        <li> <a id=4 class="fa fa-star fa-3x ratingStar"></a> </li>
-                        <li> <a id=3 class="fa fa-star fa-3x ratingStar"></a> </li>
-                        <li> <a id=2 class="fa fa-star fa-3x ratingStar"></a> </li>
-                        <li> <a id=1 class="fa fa-star fa-3x ratingStar"></a> </li>
-                    </div>
-                </ul> 
+            <section id="Rating" class="landingSection">
+                <div id="ratingSystemSection">
+                    <ul>
+                        <div  onclick="RatingClicked(event)">
+                            <li> <a id=5 class="fa fa-star fa-3x ratingStar"></a> </li>
+                            <li> <a id=4 class="fa fa-star fa-3x ratingStar"></a> </li>
+                            <li> <a id=3 class="fa fa-star fa-3x ratingStar"></a> </li>
+                            <li> <a id=2 class="fa fa-star fa-3x ratingStar"></a> </li>
+                            <li> <a id=1 class="fa fa-star fa-3x ratingStar"></a> </li>
+                        </div>
+                    </ul> 
 
-                <div id="ratingResults" class="row">
-                </div>  
-                <div class="averageRatingDiv">
-                    <p id="ratingAvr" style="padding-top: 30%; font-size: 48pt; font-weight: bolder;">
-                        2.5
+                    <div id="ratingResults" class="row">
+                    </div>  
+                    <div class="averageRatingDiv">
+                        <p id="ratingAvr" style="padding-top: 30%; font-size: 48pt; font-weight: bolder;">
+                            2.5
+                        </p>
+                    </div>
+                    <p style="font-size: 48pt; font-weight: bolder; color: black; float: left; margin-left: 25%;">
+                        Average rating!
                     </p>
                 </div>
-                <p style="font-size: 48pt; font-weight: bolder; color: black; float: left; margin-left: 25%;">
-                    Average rating!
-                </p>
-            </div>
+
+            </section>
             <!--User-added container -->
             <div id="userAddedSections">
 
             </div>
-
         </div>
         <!--Footer -->
         <footer>
@@ -154,7 +193,7 @@
 
 
     <!--=====Add a new item button =====-->
-    <a onclick="ShowAddItemMenu()" class="floatingButton">
+    <a onclick="ShowAddItemMenu()" id="floatingBtn" class="floatingButton">
         <i class="fa fa-plus floatingButtonIcon"></i>
     </a>
     <!--=====Popup menu to add a new item =====-->
@@ -177,6 +216,10 @@
         <button onclick="AddItem()"> OK </button>
     </div>
 
+    <!--=====Add a new item button =====-->
+    <a onclick="GoToTop()" id="floatingBtnToTop" class="floatingButton" style="bottom: 110px;">
+        <i class="fa fa-angle-double-up floatingButtonIcon"></i>
+    </a>
     <!--=====include the function from JS file =====-->
     <script src="js/app.js"></script>
 </html>

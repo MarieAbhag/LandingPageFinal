@@ -117,12 +117,41 @@ select:hover{
 /*=== Classes for special components ==*/
 /*=====================================*/
 
+.landingSection{
+  display: none;
+  padding-top: 100px;
+}
+
+.landingSectionUserDefined{
+  padding-top: 100px;
+}
+
+.checkBoxClass{
+  border-radius: 1px;
+}
+
+#sectionsDetails{
+  display: none;
+}
+
+.secDetail{
+  border-radius: 1px;
+}
+
+.secTitle{
+  border-radius: 1px;
+}
+
+.secText{
+  border-radius: 1px;
+}
 
 #mainDiv{
   height: 100%;
   width: 100%;
   box-shadow: 2px 2px 3px #999;
   background-color: var(--body-background) ;
+  display: none;
 }
 
 .bodyStyle{
@@ -225,6 +254,7 @@ select:hover{
 	text-align:center;
 	box-shadow: 2px 2px 3px #999;
   cursor: pointer;
+  display: none;
 }
 
 .floatingButton:hover{
@@ -396,6 +426,7 @@ footer{
   padding: 2px;
   color: var(--font-color-secondary);
   text-align: center;
+  margin-top: 70px;
 }
 
 
