@@ -39,10 +39,20 @@ let texts =  {};
 let readyComponents = [ ];
 // ============================================================================
 
-
+window.addEventListener('resize', BodyResize);
 //==============================================================
 // ================= Functions for APIs ==========================
 //==============================================================
+
+function BodyResize(){
+    let box = document.querySelector('#mainDiv');
+    let header = document.querySelector('#headerItems');
+    header.style.width = box.offsetWidth+"px";
+
+    let imgs = document.querySelectorAll('.aboutUsImg');
+    imgs[0].style.width = (box.offsetWidth/4)+"px";
+    imgs[1].style.width = (box.offsetWidth/4)+"px";
+}
 
 // to randomize the titles and text of the sections -(mainly to test)
 function RandomizeSectionDetails(){
@@ -191,13 +201,23 @@ function ShowMainPageWithUserSetup()
 
     document.getElementById("floatingBtn").style.display = "block";
     document.getElementById("floatingBtnToTop").style.display = "block";
+    BodyResize();
 }
 
 // function to change active class for nav item
 function ChangeActiveState(e) 
 {
+
+    var els = document.getElementsByClassName("landingSectionActive");
+    var elsNav = document.getElementsByClassName("active");
+    if (els.length > 0){
+        els[0].className = "landingSectionUserDefined";
+        elsNav[0].className = "";
+    }
     var elmnt = document.getElementById(e.target.innerHTML);
     elmnt.scrollIntoView({behavior: 'smooth'});
+    elmnt.className = "landingSectionActive"
+    e.target.className = "active";
 }
 
 // To open the add item menu

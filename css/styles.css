@@ -30,6 +30,7 @@
   }
 }
 
+
 /*=====================================*/
 /*===== Classes for tags (global) =====*/
 /*=====================================*/
@@ -89,13 +90,16 @@ li a {
   padding: 14px 16px;
   text-decoration: none;
   cursor:pointer;
+  /* float: left; */
 }
 
 li a:hover:not(.active) {
   background-color: var(--hover-color);
 }
 
-
+li a:active {
+  background-color: var(--hover-color);
+}
 /* Style inputs with type="text", select elements and textareas */
 input[type=text], select, textarea {
   width: 100%; /* Full width */
@@ -112,18 +116,27 @@ select:hover{
   background-color: var(--hover-color);
 }
 
-
 /*=====================================*/
 /*=== Classes for special components ==*/
 /*=====================================*/
 
 .landingSection{
   display: none;
-  padding-top: 100px;
+  padding: 100px;
+  margin-top: 200px;
 }
 
-.landingSectionUserDefined{
-  padding-top: 100px;
+.landingSectionActive{
+  background-color: #a6b1de;
+  padding: 100px;
+  margin-top: 200px;
+}
+
+
+.landingSectionUserDefined
+{
+  padding: 100px;
+  margin-top: 200px;
 }
 
 .checkBoxClass{
@@ -168,7 +181,6 @@ select:hover{
   position: fixed;
   top: 0;
   margin: auto;
-  width: 1120px;
   z-index: 100;
   background-color: var(--body-background) ;
 }
@@ -310,7 +322,6 @@ select:hover{
 
 .aboutUsImg{
   max-height: 300px;
-  width: auto;
 }
 
 /*================================ */
