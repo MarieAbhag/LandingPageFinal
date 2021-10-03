@@ -170,6 +170,7 @@ function ShowMainPageWithUserSetup()
     for(var i = 0; i < readyComponents.length; i++)
     {
         var newListItem= document.createElement("li");
+        newListItem.setAttribute("class",readyComponents[i]); 
         newListItem.innerHTML = "<a>"+readyComponents[i] +"</a>";
         document.querySelector("#headerItems").appendChild(newListItem);
     }
@@ -178,6 +179,7 @@ function ShowMainPageWithUserSetup()
     for(var i = 0; i < titels.length; i++)
     {
         var newListItem= document.createElement("li");
+        newListItem.setAttribute("class",titels[i].value); 
         newListItem.innerHTML = "<a>"+ titels[i].value+"</a>";
         document.querySelector("#headerItems").appendChild(newListItem);
         var newDiv= document.createElement("div");
@@ -207,7 +209,6 @@ function ShowMainPageWithUserSetup()
 // function to change active class for nav item
 function ChangeActiveState(e) 
 {
-
     var els = document.getElementsByClassName("landingSectionActive");
     var elsNav = document.getElementsByClassName("active");
     if (els.length > 0){
@@ -216,7 +217,7 @@ function ChangeActiveState(e)
     }
     var elmnt = document.getElementById(e.target.innerHTML);
     elmnt.scrollIntoView({behavior: 'smooth'});
-    elmnt.className = "landingSectionActive"
+    elmnt.classList.add("landingSectionActive");
     e.target.className = "active";
 }
 
@@ -476,3 +477,119 @@ function AddNavItem(title, text){;
 function GoToTop(){
     document.querySelector("#mainDiv").scrollIntoView({behavior:'smooth'});  
 }
+
+
+window.onscroll = function(){
+    var elmnt = document.getElementsByClassName("landingSection");
+    var elmntAct = document.getElementsByClassName("landingSection landingSectionActive");
+    var elmntUsr = document.getElementsByClassName("landingSectionUserDefined");
+    var elmntActUsr = document.getElementsByClassName("landingSectionUserDefined landingSectionActive");
+    var navAct = document.getElementsByClassName("active");
+
+    if (elmntAct.length > 0)
+    {
+        elmntAct[0].classList.remove("landingSectionActive");
+    }
+    if (navAct.length > 0)
+    {
+        navAct[0].classList.remove("active");
+    }
+    if (elmnt.length > 0) 
+    {
+        for (let index = 0; index < elmnt.length; index++) 
+        {
+            var rect = elmnt[index].getBoundingClientRect();
+            if (rect.top >-200 && rect.top < 600) {
+                elmnt[index].classList.add("landingSectionActive");
+                var navItem = document.getElementsByClassName(elmnt[index].id);
+                if (navItem.length>0) {
+                    navItem[0].classList.add("active");
+                }
+            }
+
+        }
+    }
+    if (elmntActUsr.length > 0)
+    {
+        elmntActUsr[0].classList.remove("landingSectionActive");
+    }
+    if (elmntUsr.length > 0) 
+    {
+        for (let index = 0; index < elmntUsr.length; index++) 
+        {
+            var rect = elmntUsr[index].getBoundingClientRect();
+            if (rect.top >-200 && rect.top < 600) {
+                elmntUsr[index].classList.add("landingSectionActive");
+                var navItem = document.getElementsByClassName(elmntUsr[index].id);
+                if (navItem.length>0) {
+                    navItem[0].classList.add("active");
+                }
+            }
+
+        }
+    }
+
+    
+}
+
+// window.onscroll = function()
+// {
+//     var elmnt = document.getElementsByClassName("landingSection");
+//     var elmntUser = document.getElementsByClassName("landingSectionUserDefined");
+
+//     var elmntAct = document.getElementsByClassName("landingSectionActive");
+
+//     var elsNav = document.getElementsByClassName("active");
+//     if (elsNav.length >0){
+//         elsNav[0].className = "";
+//     }
+    
+//     if (elmntAct.length >0){
+//         //if (!isUserDefined) {
+//            // elmntAct[0].className = "landingSectionUserDefined";
+//         //} else {
+//             elmntAct[0].className = "landingSectionUserDefined"; 
+//        // }
+        
+//     }
+    
+//     //var rect = elmnt[0].getBoundingClientRect();
+//     //console.log(rect.top, rect.right, rect.bottom, rect.left);
+//     //console.log(elmnt.length); 
+//     for (let index = 0; index < elmnt.length; index++) {
+//         var rect = elmnt[index].getBoundingClientRect();
+//         if (rect.top >-200 && rect.top < 600) {
+
+//             elmnt[index].className = "landingSectionActive"
+//             console.log(elmnt[index].id)
+//             // if (elmnt[index].className == "landingSection")
+//             // {
+//             //     isUserDefined = false;
+//             // }
+//             // else
+//             // {
+//             //     isUserDefined = true;
+//             // }
+            
+//         }        
+//     }
+
+//     for (let index = 0; index < elmntUser.length; index++) {
+//         var rect = elmntUser[index].getBoundingClientRect();
+//         if (rect.top >-200 && rect.top < 600) {
+
+//             elmntUser[index].className = "landingSectionActive"
+
+//             // if (elmnt[index].className == "landingSection")
+//             // {
+//             //     isUserDefined = false;
+//             // }
+//             // else
+//             // {
+//             //     isUserDefined = true;
+//             // }
+            
+//         }        
+//     }
+    
+// }
